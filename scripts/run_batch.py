@@ -15,6 +15,7 @@ from dataclasses import asdict
 # Allow running from the project root without an editable install
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from app.llm.fit_analysis import analyze_fit
 from app.scrape.browser import fetch_page
 from app.scrape.careers import find_careers_url
 from app.scrape.extractors import extract_page_content
@@ -55,21 +56,30 @@ async def scrape_domain(domain: str) -> dict:
     all_signals = merge_signals(homepage_signals, careers_signals)
     scoring = score_signals(all_signals, role_signals)
 
+    llm_analysis = analyze_fit(
+        domain=domain,
+        title=homepage.title,
+        meta_description=homepage.meta_description,
+        headings=homepage.headings,
+        visible_text=homepage.visible_text,
+        signals=all_signals,
+        fit_score=scoring.fit_score,
+        confidence=scoring.confidence,
+    )
+
     return {
         "domain": domain,
         "homepage_url": url,
         "careers_url": careers_url,
         "title": homepage.title,
         "meta_description": homepage.meta_description,
-        "headings": homepage.headings[:10],
-        "visible_text_snippet": homepage.visible_text[:600],
-        "careers": careers_out,
-        "signals": [asdict(s) for s in all_signals],
-        "signal_categories": scoring.matched_categories,
-        "creative_roles_detected": role_signals,
         "fit_score": scoring.fit_score,
         "confidence": scoring.confidence,
         "score_breakdown": scoring.breakdown,
+        "signal_categories": scoring.matched_categories,
+        "creative_roles_detected": role_signals,
+        "signals": [asdict(s) for s in all_signals],
+        "llm_analysis": llm_analysis.model_dump(),
     }
 
 
