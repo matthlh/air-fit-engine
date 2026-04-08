@@ -1,0 +1,133 @@
+[
+	{
+		"domain": "canva.com",
+		"fit_score": 84,
+		"confidence": "high",
+		"persona_guess": "Creative Operations / Marketing Operations",
+		"analyzed_at": "2026-04-08T10:28:00Z",
+		"reason_summary": "Strong fit due to content production scale, creative tooling alignment, and likely need for organized review and asset workflows.",
+		"score_breakdown": {
+			"creative_ops_signals": 30,
+			"workflow_complexity": 22,
+			"hiring_signals": 14,
+			"tooling_overlap": 11,
+			"content_scale": 7
+		},
+		"signals": [
+			"content operations",
+			"asset management",
+			"creative tooling overlap",
+			"high campaign volume"
+		],
+		"careers_url": "https://www.canva.com/careers/",
+		"ats_provider": "greenhouse",
+		"claude_reasoning": "Canva's high content production volume and creative-heavy operations create clear opportunities for improved review workflows, asset management, and cross-team collaboration - all core to Air's value proposition.",
+		"outreach_angle": "Emphasize streamlining creative reviews and asset organization for distributed creative and marketing teams managing high content volume.",
+		"evidence": [
+			{
+				"source": "homepage",
+				"snippet": "Empowering the world to design with millions of templates and assets."
+			},
+			{
+				"source": "careers",
+				"snippet": "Hiring for creative operations, design systems, and marketing roles."
+			}
+		]
+	},
+	{
+		"domain": "figma.com",
+		"fit_score": 78,
+		"confidence": "high",
+		"persona_guess": "Brand Operations / Creative Ops",
+		"analyzed_at": "2026-04-08T10:30:00Z",
+		"reason_summary": "Likely strong fit due to creative workflow complexity, design tooling overlap, and signs of high content collaboration needs.",
+		"score_breakdown": {
+			"creative_ops_signals": 28,
+			"workflow_complexity": 20,
+			"hiring_signals": 12,
+			"tooling_overlap": 10,
+			"content_scale": 8
+		},
+		"signals": [
+			"brand operations",
+			"creative workflow",
+			"high content scale",
+			"cross-functional collaboration",
+			"design systems"
+		],
+		"careers_url": "https://www.figma.com/careers/",
+		"ats_provider": "greenhouse",
+		"claude_reasoning": "The company appears to operate in a design-heavy environment with workflow complexity that likely creates approval, collaboration, and asset coordination challenges relevant to Air.",
+		"outreach_angle": "Mention reducing friction in creative collaboration, reviews, and asset organization for fast-moving design and brand teams.",
+		"evidence": [
+			{
+				"source": "homepage",
+				"snippet": "Figma helps teams design, prototype, and collaborate in one place."
+			},
+			{
+				"source": "careers",
+				"snippet": "We are hiring across design, product, and brand-related functions."
+			}
+		]
+	},
+	{
+		"domain": "webflow.com",
+		"fit_score": 72,
+		"confidence": "medium",
+		"persona_guess": "Brand Operations / Content Operations",
+		"analyzed_at": "2026-04-08T10:20:00Z",
+		"reason_summary": "Good fit due to strong content and brand workflow signals, with likely review and versioning needs across teams.",
+		"score_breakdown": {
+			"creative_ops_signals": 24,
+			"workflow_complexity": 18,
+			"hiring_signals": 12,
+			"tooling_overlap": 10,
+			"content_scale": 8
+		},
+		"signals": [
+			"brand operations",
+			"content scale",
+			"review workflows",
+			"design collaboration"
+		],
+		"careers_url": "https://webflow.com/careers",
+		"ats_provider": "greenhouse"
+	},
+	{
+		"domain": "dribbble.com",
+		"fit_score": 67,
+		"confidence": "medium",
+		"persona_guess": "Creative Team / Brand Design",
+		"analyzed_at": "2026-04-08T10:15:00Z",
+		"reason_summary": "Reasonable fit due to design-heavy context and creative collaboration patterns, though enterprise workflow complexity is less clear.",
+		"signals": ["creative workflow", "design collaboration", "brand content"],
+		"careers_url": "https://dribbble.com/jobs",
+		"ats_provider": "lever"
+	},
+	{
+		"domain": "notion.so",
+		"fit_score": 61,
+		"confidence": "medium",
+		"persona_guess": "Brand Design / Marketing Ops",
+		"analyzed_at": "2026-04-08T10:25:00Z",
+		"reason_summary": "Moderate fit with some collaboration and content workflow signals, though creative-ops pain is less explicit.",
+		"signals": [
+			"brand collaboration",
+			"cross-functional workflows",
+			"content coordination"
+		],
+		"careers_url": "https://www.notion.so/careers",
+		"ats_provider": "greenhouse"
+	},
+	{
+		"domain": "hubspot.com",
+		"fit_score": 55,
+		"confidence": "medium",
+		"persona_guess": "Marketing Operations",
+		"analyzed_at": "2026-04-08T10:18:00Z",
+		"reason_summary": "Some fit through marketing scale and content production, though creative-ops specific pain is less pronounced.",
+		"signals": ["marketing scale", "campaign production", "content workflows"],
+		"careers_url": "https://www.hubspot.com/careers",
+		"ats_provider": "greenhouse"
+	}
+]

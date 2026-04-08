@@ -1,0 +1,36 @@
+{
+	"domain": "figma.com",
+	"fit_score": 78,
+	"confidence": "high",
+	"persona_guess": "Brand Operations / Creative Ops",
+	"analyzed_at": "2026-04-08T10:30:00Z",
+	"reason_summary": "Likely strong fit due to creative workflow complexity, design tooling overlap, and signs of high content collaboration needs.",
+	"score_breakdown": {
+		"creative_ops_signals": 28,
+		"workflow_complexity": 20,
+		"hiring_signals": 12,
+		"tooling_overlap": 10,
+		"content_scale": 8
+	},
+	"signals": [
+		"brand operations",
+		"creative workflow",
+		"high content scale",
+		"cross-functional collaboration",
+		"design systems"
+	],
+	"careers_url": "https://www.figma.com/careers/",
+	"ats_provider": "greenhouse",
+	"claude_reasoning": "The company appears to operate in a design-heavy environment with workflow complexity that likely creates approval, collaboration, and asset coordination challenges relevant to Air.",
+	"outreach_angle": "Mention reducing friction in creative collaboration, reviews, and asset organization for fast-moving design and brand teams.",
+	"evidence": [
+		{
+			"source": "homepage",
+			"snippet": "Figma helps teams design, prototype, and collaborate in one place."
+		},
+		{
+			"source": "careers",
+			"snippet": "We are hiring across design, product, and brand-related functions."
+		}
+	]
+}
