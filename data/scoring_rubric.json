@@ -1,0 +1,18 @@
+{
+  "signal_weights": {
+    "asset_management": 20,
+    "brand_creative_ops": 20,
+    "review_approvals": 15,
+    "content_operations": 15,
+    "versioning": 10,
+    "scale_localization": 10,
+    "creative_tooling": 10,
+    "team_collaboration": 5
+  },
+  "role_bonus_per_role": 5,
+  "role_bonus_max": 15,
+  "confidence_thresholds": {
+    "high": 3,
+    "medium": 1
+  }
+}

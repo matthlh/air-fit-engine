@@ -19,6 +19,7 @@ from app.scrape.browser import fetch_page
 from app.scrape.careers import find_careers_url
 from app.scrape.extractors import extract_page_content
 from app.scrape.signals import extract_signals, extract_role_signals, merge_signals
+from app.scoring import score_signals
 from app.utils.logger import get_logger
 from app.utils.url_helpers import get_base_domain, normalize_url
 
@@ -52,6 +53,7 @@ async def scrape_domain(domain: str) -> dict:
             logger.warning(f"Could not fetch careers page {careers_url}: {exc}")
 
     all_signals = merge_signals(homepage_signals, careers_signals)
+    scoring = score_signals(all_signals, role_signals)
 
     return {
         "domain": domain,
@@ -63,8 +65,11 @@ async def scrape_domain(domain: str) -> dict:
         "visible_text_snippet": homepage.visible_text[:600],
         "careers": careers_out,
         "signals": [asdict(s) for s in all_signals],
-        "signal_categories": sorted({s.category for s in all_signals}),
+        "signal_categories": scoring.matched_categories,
         "creative_roles_detected": role_signals,
+        "fit_score": scoring.fit_score,
+        "confidence": scoring.confidence,
+        "score_breakdown": scoring.breakdown,
     }
 
 
