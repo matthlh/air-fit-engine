@@ -33,13 +33,14 @@ test-results/
 .vscode/
 .idea/
 
-# SQLite
+# SQLite / local data
 *.db
 *.sqlite3
 
 # Claude Code
+.claude/
 memory/
 
-# Output
+# Output artifacts
 data/output/*
 !data/output/.gitkeep
