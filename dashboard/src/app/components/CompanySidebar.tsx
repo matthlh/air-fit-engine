@@ -3,6 +3,12 @@ import { formatDistanceToNow } from 'date-fns';
 import { Loader2 } from 'lucide-react';
 import type { Company } from '../types';
 
+function safeRelativeDate(dateStr: string | null | undefined): string {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '—' : formatDistanceToNow(d, { addSuffix: true });
+}
+
 interface CompanySidebarProps {
   companies: Company[];
   selectedDomain: string | null;
@@ -72,7 +78,7 @@ export function CompanySidebar({
 
               <div className="flex items-center justify-between">
                 <div className="text-xs text-gray-500">
-                  {formatDistanceToNow(new Date(company.created_at), { addSuffix: true })}
+                  {safeRelativeDate(company.created_at)}
                 </div>
                 {!isAnalyzing && <ConfidenceBadge confidence={company.confidence} />}
               </div>

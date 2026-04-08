@@ -3,7 +3,6 @@ import {
   ExternalLink,
   Clock,
   User,
-  Briefcase,
   TrendingUp,
   CheckCircle2,
   Globe,
@@ -15,6 +14,12 @@ import {
 import { motion } from 'motion/react';
 import { formatDistanceToNow } from 'date-fns';
 import type { Company, Signal } from '../types';
+
+function safeRelativeDate(dateStr: string | null | undefined): string {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '—' : formatDistanceToNow(d, { addSuffix: true });
+}
 import { api } from '../api/client';
 
 // Max points per category — mirrors scoring_rubric.json
@@ -114,7 +119,7 @@ export function CompanyDetail({ company }: CompanyDetailProps) {
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
                 <span>
-                  Analyzed {formatDistanceToNow(new Date(company.created_at), { addSuffix: true })}
+                  Analyzed {safeRelativeDate(company.created_at)}
                 </span>
               </div>
             </div>
