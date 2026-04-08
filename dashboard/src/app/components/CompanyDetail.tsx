@@ -10,6 +10,7 @@ import {
   Copy,
   Check,
   Download,
+  AlertTriangle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { formatDistanceToNow } from 'date-fns';
@@ -91,6 +92,44 @@ export function CompanyDetail({ company }: CompanyDetailProps) {
       setTimeout(() => setOutreachCopied(false), 2000);
     });
   };
+
+  if (company.error) {
+    return (
+      <motion.div
+        key={company.domain}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="max-w-5xl mx-auto p-8"
+      >
+        <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-red-200/60 p-8 shadow-lg">
+          <div className="flex items-start gap-5">
+            <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="w-6 h-6 text-red-500" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900 mb-1">{company.domain}</h2>
+              <p className="text-sm font-medium text-red-600 mb-3">Could not be analyzed</p>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                The scraper was unable to fetch or process this site. This usually means the site
+                blocks headless browsers, requires authentication, or the domain doesn't resolve.
+              </p>
+              {company.error && (
+                <details className="mt-4">
+                  <summary className="text-xs text-gray-400 cursor-pointer hover:text-gray-600">
+                    Show error detail
+                  </summary>
+                  <pre className="mt-2 text-xs text-gray-500 bg-gray-50 rounded-lg p-3 overflow-x-auto whitespace-pre-wrap">
+                    {company.error}
+                  </pre>
+                </details>
+              )}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

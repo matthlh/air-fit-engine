@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { formatDistanceToNow } from 'date-fns';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertTriangle } from 'lucide-react';
 import type { Company } from '../types';
 
 function safeRelativeDate(dateStr: string | null | undefined): string {
@@ -62,13 +62,21 @@ export function CompanySidebar({
                     {company.domain}
                   </div>
                   <div className="text-xs text-gray-500 mt-1 truncate">
-                    {isAnalyzing ? 'Analyzing…' : (company.llm_analysis?.persona_guess ?? '')}
+                    {isAnalyzing
+                      ? 'Analyzing…'
+                      : company.error
+                      ? 'Could not be analyzed'
+                      : (company.llm_analysis?.persona_guess ?? '')}
                   </div>
                 </div>
                 <div className="flex-shrink-0">
                   {isAnalyzing ? (
                     <span className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gray-100 text-gray-500 text-xs font-medium min-w-[44px] justify-center">
                       <Loader2 className="w-3 h-3 animate-spin" />
+                    </span>
+                  ) : company.error ? (
+                    <span className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-red-50 text-red-500 text-xs font-medium min-w-[44px]">
+                      <AlertTriangle className="w-3.5 h-3.5" />
                     </span>
                   ) : (
                     <ScoreBadge score={company.fit_score} isSelected={isSelected} />

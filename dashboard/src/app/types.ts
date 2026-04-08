@@ -17,6 +17,7 @@ export interface LlmAnalysis {
 export interface Company {
   id?: number;
   domain: string;
+  error?: string; // set when the pipeline failed for this domain
   homepage_url?: string | null;
   careers_url?: string | null;
   title?: string | null;
