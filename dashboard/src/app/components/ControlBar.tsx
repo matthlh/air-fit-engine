@@ -1,5 +1,5 @@
 import { Search, Sparkles, Download, ChevronDown } from 'lucide-react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 
 interface ControlBarProps {
   searchQuery: string;
@@ -71,7 +71,7 @@ export function ControlBar({
           <Download className="w-4 h-4" />
           Export
         </Button>
-        <Button variant="primary" size="sm" onClick={onAnalyze}>
+        <Button variant="default" size="sm" onClick={onAnalyze}>
           <Sparkles className="w-4 h-4" />
           Analyze
         </Button>

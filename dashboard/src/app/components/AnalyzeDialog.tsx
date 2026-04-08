@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { X, Link as LinkIcon, List, Upload } from 'lucide-react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { motion } from 'motion/react';
 
 interface AnalyzeDialogProps {

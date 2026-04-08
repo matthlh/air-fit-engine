@@ -10,14 +10,13 @@ import { api } from './api/client';
 export default function App() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     api
       .listCompanies()
       .then(setCompanies)
-      .catch(() => {
-        // Backend unavailable — fall through to empty state
-      })
+      .catch(() => setLoadError('Could not reach backend. Is the API server running?'))
       .finally(() => setIsLoading(false));
   }, []);
   const [selectedDomain, setSelectedDomain] = useState<string | null>(
@@ -59,7 +58,7 @@ export default function App() {
       filtered = [...filtered].sort((a, b) => a.domain.localeCompare(b.domain));
     } else if (sortBy === 'date-desc') {
       filtered = [...filtered].sort(
-        (a, b) => new Date(b.analyzed_at).getTime() - new Date(a.analyzed_at).getTime()
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       );
     }
 
@@ -86,12 +85,12 @@ export default function App() {
       domain,
       fit_score: 0,
       confidence: 'low' as const,
-      persona_guess: 'Analyzing…',
-      analyzed_at: new Date().toISOString(),
-      reason_summary: 'Analysis in progress…',
+      signal_categories: [],
+      creative_roles_detected: [],
+      score_breakdown: {},
       signals: [],
-      careers_url: '',
-      ats_provider: null,
+      careers_url: null,
+      created_at: new Date().toISOString(),
     }));
     setCompanies((prev) => [...placeholders, ...prev]);
     setSelectedDomain(placeholders[0].domain);
@@ -139,6 +138,7 @@ export default function App() {
               hasCompanies={companies.length > 0}
               hasFilteredCompanies={filteredCompanies.length > 0}
               isLoading={isLoading}
+              error={loadError}
               onAddCompany={() => setIsAnalyzeDialogOpen(true)}
             />
           )}

@@ -50,7 +50,7 @@ export function CompanySidebar({
                     {company.domain}
                   </div>
                   <div className="text-xs text-gray-500 mt-1 truncate">
-                    {company.persona_guess}
+                    {company.llm_analysis?.persona_guess ?? ''}
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -60,7 +60,7 @@ export function CompanySidebar({
               
               <div className="flex items-center justify-between">
                 <div className="text-xs text-gray-500">
-                  {formatDistanceToNow(new Date(company.analyzed_at), { addSuffix: true })}
+                  {formatDistanceToNow(new Date(company.created_at), { addSuffix: true })}
                 </div>
                 <ConfidenceBadge confidence={company.confidence} />
               </div>

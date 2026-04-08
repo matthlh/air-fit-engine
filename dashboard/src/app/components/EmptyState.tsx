@@ -1,10 +1,11 @@
-import { FileSearch, Sparkles } from 'lucide-react';
-import { Button } from './ui/Button';
+import { FileSearch, Sparkles, AlertCircle } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface EmptyStateProps {
   hasCompanies: boolean;
   hasFilteredCompanies: boolean;
   isLoading?: boolean;
+  error?: string | null;
   onAddCompany: () => void;
 }
 
@@ -12,12 +13,27 @@ export function EmptyState({
   hasCompanies,
   hasFilteredCompanies,
   isLoading,
+  error,
   onAddCompany,
 }: EmptyStateProps) {
   if (isLoading) {
     return (
       <div className="h-full flex items-center justify-center">
         <div className="text-center text-sm text-gray-500">Loading…</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-8 h-8 text-red-400" />
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Backend unavailable</h3>
+          <p className="text-sm text-gray-500">{error}</p>
+        </div>
       </div>
     );
   }
