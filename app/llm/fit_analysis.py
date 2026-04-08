@@ -13,14 +13,16 @@ _SYSTEM = (_PROMPTS / "fit_analysis_system.md").read_text()
 _USER_TEMPLATE = (_PROMPTS / "fit_analysis_user_template.md").read_text()
 
 
-def _parse_response(raw: str) -> dict:
+def _parse_response(raw: str, domain: str) -> dict:
     """Strip markdown fences if Claude wraps the JSON, then parse."""
     text = raw.strip()
     if text.startswith("```"):
         lines = text.splitlines()
-        # drop opening and closing fence lines
         text = "\n".join(lines[1:-1] if lines[-1].strip() == "```" else lines[1:])
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Claude returned invalid JSON for {domain}: {exc}\nRaw: {raw[:200]}")
 
 
 def analyze_fit(
@@ -52,5 +54,5 @@ def analyze_fit(
     raw = call_claude(_SYSTEM, user_prompt)
     logger.info(f"Claude raw response for {domain}: {raw[:120]}…")
 
-    data = _parse_response(raw)
+    data = _parse_response(raw, domain)
     return FitAnalysis.model_validate(data)

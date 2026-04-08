@@ -1,5 +1,5 @@
 import anthropic
-from app.config import ANTHROPIC_API_KEY
+from app.config import ANTHROPIC_API_KEY, DEFAULT_CLAUDE_MODEL
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -19,7 +19,7 @@ def _get_client() -> anthropic.Anthropic:
 def call_claude(
     system: str,
     user: str,
-    model: str = "claude-haiku-4-5-20251001",
+    model: str = DEFAULT_CLAUDE_MODEL,
     max_tokens: int = 1024,
 ) -> str:
     logger.info(f"Calling Claude ({model})")

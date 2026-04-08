@@ -13,7 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app.services.pipeline import run_pipeline
+from app.services.batch_runner import run_batch
 from app.utils.logger import get_logger
 
 logger = get_logger("run_batch")
@@ -25,16 +25,7 @@ async def main() -> None:
         sys.exit(1)
 
     domains = sys.argv[1:]
-    results = []
-    for domain in domains:
-        logger.info(f"--- {domain} ---")
-        try:
-            result = await run_pipeline(domain)
-            results.append(result)
-        except Exception as exc:
-            logger.error(f"Failed on {domain}: {exc}")
-            results.append({"domain": domain, "error": str(exc)})
-
+    results = await run_batch(domains)
     output = results[0] if len(results) == 1 else results
     print(json.dumps(output, indent=2))
 
