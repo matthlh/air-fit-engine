@@ -44,3 +44,8 @@ memory/
 # Output artifacts
 data/output/*
 !data/output/.gitkeep
+
+# Dashboard (React/Vite)
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.env.local
