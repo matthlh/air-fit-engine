@@ -1,3 +1,4 @@
+# Install file for convenience. pyproject.toml main install.
 fastapi
 uvicorn[standard]
 playwright
