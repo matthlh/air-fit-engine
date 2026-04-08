@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+playwright
+beautifulsoup4
+anthropic
+pandas
+pydantic
+python-dotenv
+pytest
+pytest-asyncio
+httpx
