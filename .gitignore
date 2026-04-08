@@ -37,6 +37,9 @@ test-results/
 *.db
 *.sqlite3
 
+# Claude Code
+memory/
+
 # Output
 data/output/*
 !data/output/.gitkeep
