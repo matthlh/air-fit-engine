@@ -1,17 +1,20 @@
 import { motion } from 'motion/react';
 import { formatDistanceToNow } from 'date-fns';
+import { Loader2 } from 'lucide-react';
 import type { Company } from '../types';
 
 interface CompanySidebarProps {
   companies: Company[];
   selectedDomain: string | null;
   onSelectCompany: (domain: string) => void;
+  analyzingDomains?: Set<string>;
 }
 
 export function CompanySidebar({
   companies,
   selectedDomain,
   onSelectCompany,
+  analyzingDomains = new Set(),
 }: CompanySidebarProps) {
   return (
     <aside className="w-80 bg-white/40 backdrop-blur-md border-r border-gray-200/50 overflow-y-auto flex flex-col">
@@ -24,6 +27,7 @@ export function CompanySidebar({
       <div className="flex-1 overflow-y-auto p-2">
         {companies.map((company) => {
           const isSelected = selectedDomain === company.domain;
+          const isAnalyzing = analyzingDomains.has(company.domain);
           return (
             <motion.button
               key={company.domain}
@@ -41,28 +45,36 @@ export function CompanySidebar({
               {isSelected && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-r-full" />
               )}
-              
+
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex-1 min-w-0">
-                  <div className={`text-sm font-semibold truncate ${
-                    isSelected ? 'text-blue-900' : 'text-gray-900'
-                  }`}>
+                  <div
+                    className={`text-sm font-semibold truncate ${
+                      isSelected ? 'text-blue-900' : 'text-gray-900'
+                    }`}
+                  >
                     {company.domain}
                   </div>
                   <div className="text-xs text-gray-500 mt-1 truncate">
-                    {company.llm_analysis?.persona_guess ?? ''}
+                    {isAnalyzing ? 'Analyzing…' : (company.llm_analysis?.persona_guess ?? '')}
                   </div>
                 </div>
                 <div className="flex-shrink-0">
-                  <ScoreBadge score={company.fit_score} isSelected={isSelected} />
+                  {isAnalyzing ? (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gray-100 text-gray-500 text-xs font-medium min-w-[44px] justify-center">
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                    </span>
+                  ) : (
+                    <ScoreBadge score={company.fit_score} isSelected={isSelected} />
+                  )}
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div className="text-xs text-gray-500">
                   {formatDistanceToNow(new Date(company.created_at), { addSuffix: true })}
                 </div>
-                <ConfidenceBadge confidence={company.confidence} />
+                {!isAnalyzing && <ConfidenceBadge confidence={company.confidence} />}
               </div>
             </motion.button>
           );
@@ -71,9 +83,7 @@ export function CompanySidebar({
 
       {companies.length === 0 && (
         <div className="flex-1 flex items-center justify-center p-8">
-          <div className="text-center text-sm text-gray-500">
-            No companies found
-          </div>
+          <div className="text-center text-sm text-gray-500">No companies found</div>
         </div>
       )}
     </aside>
@@ -83,8 +93,8 @@ export function CompanySidebar({
 function ScoreBadge({ score, isSelected }: { score: number; isSelected: boolean }) {
   let colorClass = 'bg-gray-100 text-gray-700';
   if (score >= 70) {
-    colorClass = isSelected 
-      ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30' 
+    colorClass = isSelected
+      ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30'
       : 'bg-gradient-to-br from-green-100 to-emerald-50 text-green-700';
   } else if (score >= 40) {
     colorClass = isSelected
@@ -97,7 +107,9 @@ function ScoreBadge({ score, isSelected }: { score: number; isSelected: boolean 
   }
 
   return (
-    <span className={`inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg text-xs font-bold ${colorClass} min-w-[44px]`}>
+    <span
+      className={`inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg text-xs font-bold ${colorClass} min-w-[44px]`}
+    >
       {score}
     </span>
   );
@@ -105,11 +117,8 @@ function ScoreBadge({ score, isSelected }: { score: number; isSelected: boolean 
 
 function ConfidenceBadge({ confidence }: { confidence: string }) {
   let colorClass = 'bg-gray-100/80 text-gray-600';
-  if (confidence === 'high') {
-    colorClass = 'bg-blue-100/80 text-blue-700';
-  } else if (confidence === 'medium') {
-    colorClass = 'bg-purple-100/80 text-purple-700';
-  }
+  if (confidence === 'high') colorClass = 'bg-blue-100/80 text-blue-700';
+  else if (confidence === 'medium') colorClass = 'bg-purple-100/80 text-purple-700';
 
   return (
     <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs ${colorClass}`}>

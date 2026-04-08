@@ -11,6 +11,7 @@ export default function App() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [analyzingDomains, setAnalyzingDomains] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     api
@@ -94,6 +95,7 @@ export default function App() {
     }));
     setCompanies((prev) => [...placeholders, ...prev]);
     setSelectedDomain(placeholders[0].domain);
+    setAnalyzingDomains(new Set(allDomains));
 
     try {
       const results = await api.analyze(allDomains);
@@ -103,6 +105,8 @@ export default function App() {
       });
     } catch {
       // Leave placeholders in place; user can retry
+    } finally {
+      setAnalyzingDomains(new Set());
     }
   };
 
@@ -128,6 +132,7 @@ export default function App() {
           companies={filteredCompanies}
           selectedDomain={selectedDomain}
           onSelectCompany={setSelectedDomain}
+          analyzingDomains={analyzingDomains}
         />
 
         <main className="flex-1 overflow-auto">

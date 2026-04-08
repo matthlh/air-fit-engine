@@ -5,7 +5,7 @@
 ![Playwright](https://img.shields.io/badge/Playwright-scraping-45ba63)
 ![SQLite](https://img.shields.io/badge/SQLite-local%20storage-003b57)
 ![Claude](https://img.shields.io/badge/Claude-structured%20analysis-orange)
-![Status](https://img.shields.io/badge/Status-backend%20complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-full%20stack-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 Internal GTM prototype for identifying companies likely to have creative-operations pain points relevant to Air. Given company domains, it scrapes public websites and hiring pages, extracts creative-ops signals, computes a deterministic fit score\*, and optionally generates structured reasoning with Claude LLM.
@@ -46,7 +46,7 @@ This project simulates a GTM engineering workflow for Air: turning public accoun
 - [x] Fit scoring (rubric-driven, 0–100)
 - [x] Claude structured analysis (Pydantic-validated JSON)
 - [x] SQLite storage + FastAPI backend
-- [ ] Dashboard / Review UI (in progress)
+- [x] Dashboard (React/Vite, wired to backend API)
 
 ## Example Output
 

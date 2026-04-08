@@ -49,3 +49,8 @@ data/output/*
 dashboard/node_modules/
 dashboard/dist/
 dashboard/.env.local
+
+# Scratch files dropped in root
+DASHBOARD_SPEC.md
+sample_companies.json
+sample_company.json
