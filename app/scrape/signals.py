@@ -25,6 +25,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
         [
             "approval process", "review process", "sign-off", "sign off",
             "proofing", "markup", "annotation", "feedback loop", "approval workflow",
+            "design review", "creative review", "share for review", "request feedback",
+            "review and approve", "review and comment", "creative feedback",
         ],
     ),
     "asset_management": (
@@ -32,6 +34,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
         [
             "asset management", "digital asset", "dam", "media library",
             "asset library", "content library", "file management",
+            "brand assets", "design assets", "design system", "component library",
+            "template library", "asset organization", "image library",
         ],
     ),
     "versioning": (
@@ -39,6 +43,7 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
         [
             "version control", "versioning", "revision history",
             "file versions", "final_final", "v2 of",
+            "version history", "revision tracking", "change history",
         ],
     ),
     "brand_creative_ops": (
@@ -47,6 +52,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
             "brand ops", "creative ops", "creative operations", "brand operations",
             "brand management", "brand guidelines", "style guide",
             "brand consistency", "creative director", "creative team",
+            "in-house creative", "creative studio", "brand team",
+            "visual identity", "brand identity", "creative department",
         ],
     ),
     "content_operations": (
@@ -55,6 +62,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
             "content ops", "content operations", "content pipeline",
             "content workflow", "content calendar", "editorial calendar",
             "content strategy", "content production",
+            "content team", "content creation", "content management",
+            "marketing content", "content marketing",
         ],
     ),
     "scale_localization": (
@@ -63,6 +72,7 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
             "localization", "localise", "localize", "multi-market",
             "global campaign", "regional campaign", "translation",
             "campaign at scale", "international marketing",
+            "global marketing", "at scale", "market-specific", "regional content",
         ],
     ),
     "creative_tooling": (
@@ -70,7 +80,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
         [
             "creative tools", "creative workflow", "creative software",
             "design tools", "creative suite", "content creation tool",
-            "production tool",
+            "production tool", "design platform", "creative platform",
+            "design workflow", "creative solution",
         ],
     ),
     "team_collaboration": (
@@ -78,6 +89,8 @@ _SIGNAL_DEFINITIONS: dict[str, tuple[str, list[str]]] = {
         [
             "cross-functional", "creative brief", "stakeholder review",
             "feedback from", "collaborate on creative", "alignment on",
+            "cross-team", "design handoff", "stakeholder", "design and engineering",
+            "designers and developers",
         ],
     ),
 }
