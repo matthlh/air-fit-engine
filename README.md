@@ -8,6 +8,8 @@
 ![Status](https://img.shields.io/badge/Status-full%20stack-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
+![Demo](assets/demo.gif)
+
 Internal GTM prototype for identifying companies likely to have creative-operations pain points relevant to Air. Given company domains, it scrapes public websites and hiring pages, extracts creative-ops signals, computes a deterministic fit score\*, and optionally generates structured reasoning with Claude LLM.
 
 > The fit score is rule-based and deterministic. Claude is used only for structured reasoning, summary generation, and optional outreach angles.
@@ -52,16 +54,28 @@ This project simulates a GTM engineering workflow for Air: turning public accoun
 
 ```json
 {
-  "domain": "figma.com",
-  "fit_score": 60,
-  "confidence": "high",
-  "signal_categories": ["asset_management", "review_approvals", "creative_tooling", "scale_localization", "team_collaboration"],
-  "score_breakdown": { "asset_management": 20, "review_approvals": 15, "creative_tooling": 10, "scale_localization": 10, "team_collaboration": 5 },
-  "llm_analysis": {
-    "persona_guess": "Brand Operations / Creative Ops",
-    "fit_score_explanation": "Strong fit — design-heavy org with asset management, review workflows, and content at scale.",
-    "outreach_angle": "Lead with streamlining creative handoffs and asset organisation for distributed design teams."
-  }
+	"domain": "figma.com",
+	"fit_score": 60,
+	"confidence": "high",
+	"signal_categories": [
+		"asset_management",
+		"review_approvals",
+		"creative_tooling",
+		"scale_localization",
+		"team_collaboration"
+	],
+	"score_breakdown": {
+		"asset_management": 20,
+		"review_approvals": 15,
+		"creative_tooling": 10,
+		"scale_localization": 10,
+		"team_collaboration": 5
+	},
+	"llm_analysis": {
+		"persona_guess": "Brand Operations / Creative Ops",
+		"fit_score_explanation": "Strong fit — design-heavy org with asset management, review workflows, and content at scale.",
+		"outreach_angle": "Lead with streamlining creative handoffs and asset organisation for distributed design teams."
+	}
 }
 ```
 
@@ -70,16 +84,19 @@ This project simulates a GTM engineering workflow for Air: turning public accoun
 The most valuable near-term additions, roughly in priority order:
 
 **Signal quality**
+
 - Tool-stack detection — infer Figma, Adobe, Notion usage from job listings and homepage copy to strengthen fit reasoning
 - ATS provider detection — parse careers page URLs and scripts (Greenhouse, Lever, Ashby) as a proxy for team size and hiring velocity
 - Confidence calibration — penalise scores when signals come only from nav/footer boilerplate rather than body content
 
 **Workflow**
+
 - Scheduled rescans — re-analyse a domain on a cadence and surface score changes, so a rep can see when a cold account starts hiring creative roles
 - Account status and notes — lightweight CRM layer on top of the review queue (contacted, qualified, not a fit)
 - Push to Clay or HubSpot — export enriched results directly into the tools the GTM team already lives in
 
 **Scale**
+
 - Replace SQLite with Postgres for multi-user use
 - Background job queue (e.g. Celery + Redis) so the API returns immediately and the scrape runs async
 - Confidence score tuning against real won/lost deal data once the tool is in use
