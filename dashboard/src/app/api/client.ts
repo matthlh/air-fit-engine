@@ -27,5 +27,8 @@ export const api = {
       body: JSON.stringify({ domains }),
     }),
 
+  deleteCompany: (domain: string) =>
+    fetch(`${BASE}/companies/${encodeURIComponent(domain)}`, { method: 'DELETE' }),
+
   exportCsvUrl: () => `${BASE}/companies/export/csv`,
 };

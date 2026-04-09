@@ -86,6 +86,13 @@ def get_all_results(limit: int = 100) -> list[dict]:
     return [_deserialize(row) for row in rows]
 
 
+def delete_result(domain: str) -> bool:
+    """Delete a result by domain. Returns True if a row was removed."""
+    with _conn() as conn:
+        cur = conn.execute("DELETE FROM company_results WHERE domain = ?", (domain,))
+    return cur.rowcount > 0
+
+
 def get_result_by_domain(domain: str) -> Optional[dict]:
     with _conn() as conn:
         row = conn.execute(

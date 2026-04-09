@@ -110,6 +110,12 @@ export default function App() {
     }
   };
 
+  const handleDeleteCompany = (domain: string) => {
+    setCompanies((prev) => prev.filter((c) => c.domain !== domain));
+    if (selectedDomain === domain) setSelectedDomain(null);
+    api.deleteCompany(domain); // fire-and-forget; local state already updated
+  };
+
   const handleExportCSV = () => {
     window.open(api.exportCsvUrl(), '_blank');
   };
@@ -132,6 +138,7 @@ export default function App() {
           companies={filteredCompanies}
           selectedDomain={selectedDomain}
           onSelectCompany={setSelectedDomain}
+          onDeleteCompany={handleDeleteCompany}
           analyzingDomains={analyzingDomains}
         />
 

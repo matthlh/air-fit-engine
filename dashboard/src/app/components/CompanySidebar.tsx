@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { formatDistanceToNow } from 'date-fns';
-import { Loader2, AlertTriangle } from 'lucide-react';
+import { Loader2, AlertTriangle, X } from 'lucide-react';
 import type { Company } from '../types';
 
 function safeRelativeDate(dateStr: string | null | undefined): string {
@@ -13,6 +13,7 @@ interface CompanySidebarProps {
   companies: Company[];
   selectedDomain: string | null;
   onSelectCompany: (domain: string) => void;
+  onDeleteCompany: (domain: string) => void;
   analyzingDomains?: Set<string>;
 }
 
@@ -20,6 +21,7 @@ export function CompanySidebar({
   companies,
   selectedDomain,
   onSelectCompany,
+  onDeleteCompany,
   analyzingDomains = new Set(),
 }: CompanySidebarProps) {
   return (
@@ -51,6 +53,18 @@ export function CompanySidebar({
               {isSelected && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-r-full" />
               )}
+
+              {/* Delete button — visible on hover */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDeleteCompany(company.domain);
+                }}
+                className="absolute top-2 right-2 p-1 rounded-md text-gray-300 opacity-0 group-hover:opacity-100 hover:text-red-500 hover:bg-red-50 transition-all"
+                aria-label={`Remove ${company.domain}`}
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
 
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex-1 min-w-0">
