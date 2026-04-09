@@ -60,10 +60,10 @@ export function CompanySidebar({
                   e.stopPropagation();
                   onDeleteCompany(company.domain);
                 }}
-                className="absolute top-2 right-2 p-1 rounded-md text-gray-300 opacity-0 group-hover:opacity-100 hover:text-red-500 hover:bg-red-50 transition-all"
+                className="absolute top-2 right-2 p-1.5 rounded-md text-gray-400 opacity-40 group-hover:opacity-100 hover:text-red-500 hover:bg-red-50 transition-all"
                 aria-label={`Remove ${company.domain}`}
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
 
               <div className="flex items-start justify-between gap-3 mb-2">
