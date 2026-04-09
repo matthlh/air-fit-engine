@@ -8,7 +8,7 @@
 ![Status](https://img.shields.io/badge/Status-full%20stack-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-![Demo](assets/demo.gif)
+![Demo](assets/Demo.gif)
 
 Internal GTM prototype for identifying companies likely to have creative-operations pain points relevant to Air. Given company domains, it scrapes public websites and hiring pages, extracts creative-ops signals, computes a deterministic fit score\*, and optionally generates structured reasoning with Claude LLM.
 
