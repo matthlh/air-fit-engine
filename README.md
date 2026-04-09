@@ -18,7 +18,6 @@ Internal GTM prototype for identifying companies likely to have creative-operati
 
 - [What it does](#what-it-does)
 - [Why this matters](#why-this-matters)
-- [Status](#status)
 - [Example Output](#example-output)
 - [Potential next steps](#potential-next-steps)
 - [Stack](#stack)
@@ -26,7 +25,6 @@ Internal GTM prototype for identifying companies likely to have creative-operati
 - [Usage](#usage)
 - [Testing](#testing)
 - [Architecture Overview](#architecture-overview)
-- [License](#license)
 
 ## What it does
 
@@ -40,15 +38,6 @@ Internal GTM prototype for identifying companies likely to have creative-operati
 ## Why this matters
 
 This project simulates a GTM engineering workflow for Air: turning public account signals into structured enrichment, lead scoring, and outbound research that a sales team can actually use.
-
-## Status
-
-- [x] Scraping foundation (Playwright + BeautifulSoup)
-- [x] Signal extraction (rule-based, 8 categories)
-- [x] Fit scoring (rubric-driven, 0–100)
-- [x] Claude structured analysis (Pydantic-validated JSON)
-- [x] SQLite storage + FastAPI backend
-- [x] Dashboard (React/Vite, wired to backend API)
 
 ## Example Output
 
@@ -81,7 +70,7 @@ This project simulates a GTM engineering workflow for Air: turning public accoun
 
 ## Potential next steps
 
-The most valuable near-term additions, roughly in priority order:
+The most valuable short-term additions:
 
 **Signal quality**
 
@@ -166,7 +155,3 @@ pytest
 - `app/db.py` — SQLite persistence
 - `scripts/run_batch.py` — CLI batch runner
 ```
-
-## License
-
-MIT
