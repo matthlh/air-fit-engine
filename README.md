@@ -10,6 +10,8 @@
 
 ![Demo](assets/Demo.gif)
 
+Originally built as a speculative GTM prototype targeting Air's creative-ops vertical. The architecture (scraping → signal extraction → deterministic scoring → optional LLM reasoning) generalizes to any company-fit scoring use case.
+
 Internal GTM prototype for identifying companies likely to have creative-operations pain points relevant to Air. Given company domains, it scrapes public websites and hiring pages, extracts creative-ops signals, computes a deterministic fit score\*, and optionally generates structured reasoning with Claude LLM.
 
 > The fit score is rule-based and deterministic. Claude is used only for structured reasoning, summary generation, and optional outreach angles.
